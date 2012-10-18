@@ -78,7 +78,7 @@
             var $element = options.canDrag($me, event);
             if ($element) {
                 $sourceElement = $element;
-                var offset = $sourceElement.offset();
+                var offset = $sourceElement.position();
                 var width = $sourceElement.width();
                 var height = $sourceElement.height();
                 if (event.type=="touchstart") {
@@ -235,4 +235,3 @@
         }
     };
 })(jQuery);
-
