@@ -8,6 +8,7 @@
         dropClass: null,
         isActive: true,
         container: null, // if set, dragging is limited to this container
+        addToContainer: false, // If true, drag element is added to container as well as limited to it
 
         // Default is to allow all elements to be dragged
         canDrag: function($src, event) {
