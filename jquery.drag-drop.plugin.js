@@ -77,6 +77,7 @@
                 return;
 
             var $element = options.canDrag($me, event);
+            var $c = options.container;
             if ($element) {
                 $sourceElement = $element;
                 var offset = $sourceElement.position();
@@ -96,7 +97,11 @@
 
                     // Elements that are cloned and dragged around are added to the parent in order
                     // to get any cascading styles applied.
-                    $activeElement.appendTo($element.parent());
+                    var $appendTo = $element.parent();
+                    if (options.addToContainer && $c) {
+                        $appendTo = $c;
+                    }
+                    $activeElement.appendTo($appendTo);
                     if (options.sourceClass)
                         $sourceElement.addClass(options.sourceClass);
                     else if (options.sourceHide)
@@ -119,11 +124,12 @@
                 var $c = options.container;
                 if ($c) {
                     var offset = $c.offset();
+//                    var offset = $c.position();
                     limits = {
-                        minX: offset.left,
-                        minY: offset.top,
-                        maxX: offset.left + $c.outerWidth() - $element.outerWidth(),
-                        maxY: offset.top + $c.outerHeight() - $element.outerHeight()
+                        minX: 0, // offset.left,
+                        minY: 0, //offset.top,
+                        maxX: $c.outerWidth() - $element.outerWidth(),
+                        maxY: $c.outerHeight() - $element.outerHeight()
                     };
                 }
 
